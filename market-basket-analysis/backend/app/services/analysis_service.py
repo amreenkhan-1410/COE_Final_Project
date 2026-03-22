@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections import Counter
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from io import BytesIO
 import os
 from pathlib import Path
@@ -391,7 +391,7 @@ def _build_artifact(
         "dataset_name": dataset_name,
         "source_path": source_path,
         "source_modified_at": _get_path_modified_at(Path(source_path)) if source_path else None,
-        "trained_at": datetime.now(UTC).isoformat(),
+        "trained_at": datetime.now(timezone.utc).isoformat(),
         "min_support": min_support,
         "min_confidence": min_confidence,
         "total_transactions": total_transactions,
