@@ -17,6 +17,9 @@ allowed_origins = [
     "http://127.0.0.1:5175",
     "http://127.0.0.1:5176",
     "http://localhost:3000",  # Docker development
+    # Production frontend URLs
+    "https://market-basket-frontend.vercel.app",
+    "https://market-basket-frontend-drbxv68lu-amreenkhan-1410s-projects.vercel.app",
 ]
 
 # Add production URLs from environment variables
@@ -31,6 +34,7 @@ if os.getenv("DEBUG", "False").lower() == "true":
 app.add_middleware(
     CORSMiddleware,
     allow_origins=allowed_origins,
+    allow_origin_regex=r"https://market-basket-frontend(?:-[a-z0-9-]+)?\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
